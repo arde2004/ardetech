@@ -1,3 +1,6 @@
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+
 const requests = [
   {
     name: "Mario Rossi",
@@ -20,27 +23,22 @@ const requests = [
 ];
 
 const stats = [
-  {
-    label: "Richieste preventivo",
-    value: "12",
-  },
-  {
-    label: "Progetti attivi",
-    value: "4",
-  },
-  {
-    label: "Clienti gestiti",
-    value: "8",
-  },
-  {
-    label: "Servizi online",
-    value: "6",
-  },
+  { label: "Richieste preventivo", value: "12" },
+  { label: "Progetti attivi", value: "4" },
+  { label: "Clienti gestiti", value: "8" },
+  { label: "Servizi online", value: "6" },
 ];
 
-export default function AdminPage() {
+export default async function AdminPage() {
+  const cookieStore = await cookies();
+  const isLogged = cookieStore.get("ardetech_admin_auth")?.value === "ok";
+
+  if (!isLogged) {
+    redirect("/admin/login");
+  }
+
   return (
-    <main className="min-h-screen overflow-hidden px-6 py-8 text-white">
+    <main className="relative min-h-screen overflow-hidden px-6 py-8 text-white">
       <div className="absolute left-[-160px] top-[-160px] h-[420px] w-[420px] rounded-full bg-sky-500/20 blur-[130px]" />
       <div className="absolute right-[-180px] top-[160px] h-[520px] w-[520px] rounded-full bg-violet-600/20 blur-[150px]" />
 
@@ -50,6 +48,7 @@ export default function AdminPage() {
             <div className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-sky-400 to-violet-500 font-black text-slate-950">
               A
             </div>
+
             <div className="text-2xl font-black tracking-tight">
               ARDE<span className="gradient-text">TECH</span>
             </div>
@@ -67,9 +66,14 @@ export default function AdminPage() {
             </a>
           </div>
 
-          <span className="rounded-full border border-violet-400/30 bg-violet-400/10 px-5 py-3 text-sm font-black text-violet-200">
-            Area riservata
-          </span>
+          <form action="/api/admin/logout" method="post">
+            <button
+              type="submit"
+              className="rounded-full border border-violet-400/30 bg-violet-400/10 px-5 py-3 text-sm font-black text-violet-200 transition hover:border-violet-400"
+            >
+              Esci
+            </button>
+          </form>
         </nav>
 
         <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
@@ -177,7 +181,7 @@ export default function AdminPage() {
             <div className="text-3xl">🔐</div>
             <h3 className="mt-4 text-xl font-black">Login protetto</h3>
             <p className="mt-2 text-sm leading-6 text-slate-400">
-              Nel prossimo passaggio aggiungiamo accesso con password.
+              L’accesso admin è protetto da password.
             </p>
           </div>
         </section>
