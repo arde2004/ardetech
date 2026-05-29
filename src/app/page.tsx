@@ -1,88 +1,109 @@
+const phoneNumber = "393779635675";
+
+const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+  "Ciao Ardetech, vorrei richiedere un preventivo per un servizio informatico."
+)}`;
+
 const services = [
   {
     icon: "💻",
     title: "Siti Web Personalizzati",
-    text: "Landing page, siti aziendali e piattaforme moderne pensate per vendere, comunicare e farti trovare online.",
+    text: "Realizzo siti moderni, veloci e professionali per aziende, professionisti e attività locali.",
   },
   {
     icon: "⚙️",
     title: "Gestionali su Misura",
-    text: "Software personalizzati per organizzare clienti, lavori, documenti, scadenze, fatture e processi interni.",
+    text: "Creo software gestionali personalizzati per organizzare clienti, lavori, fatture e documenti.",
   },
   {
     icon: "🔗",
     title: "Integrazione API",
-    text: "Collego software, portali, database e servizi esterni per automatizzare operazioni ripetitive.",
+    text: "Collego software, portali e servizi online per automatizzare il tuo lavoro.",
   },
   {
     icon: "🧠",
     title: "Consulenza Informatica",
-    text: "Ti aiuto a scegliere strumenti, soluzioni e strategie digitali davvero utili per il tuo lavoro.",
+    text: "Ti aiuto a scegliere strumenti digitali, software e soluzioni adatte alla tua attività.",
   },
   {
     icon: "🛠️",
     title: "Assistenza Tecnica",
-    text: "Supporto per PC, email, stampanti, configurazioni, problemi software e ottimizzazione dispositivi.",
+    text: "Supporto per PC, email, stampanti, configurazioni, problemi software e dispositivi.",
   },
   {
     icon: "🔧",
     title: "Riparazione Hardware",
-    text: "Upgrade, formattazione, pulizia, sostituzione componenti, recupero prestazioni e manutenzione PC.",
+    text: "Upgrade, formattazioni, pulizia, sostituzione componenti e ottimizzazione PC.",
   },
 ];
 
 const projects = [
   {
     title: "Gestionale Studio Tecnico",
-    type: "Software custom",
-    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
+    type: "Software gestionale",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1400&auto=format&fit=crop",
   },
   {
     title: "Sito Web Premium",
-    type: "Website design",
-    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
+    type: "Web design",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1400&auto=format&fit=crop",
   },
   {
-    title: "Dashboard Analytics",
-    type: "Business intelligence",
-    img: "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1200&auto=format&fit=crop",
+    title: "Dashboard Aziendale",
+    type: "Analytics",
+    image:
+      "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1400&auto=format&fit=crop",
   },
   {
     title: "Automazioni API",
     type: "Integrazioni",
-    img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop",
   },
 ];
+
+const steps = ["Analisi", "Design", "Sviluppo", "Pubblicazione"];
 
 export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden text-white">
       <section id="home" className="relative min-h-screen grid-bg px-6 py-7">
-        <div className="absolute left-[-180px] top-[-180px] h-[420px] w-[420px] rounded-full bg-sky-500/25 blur-[120px] pulse-glow" />
-        <div className="absolute right-[-180px] top-[120px] h-[520px] w-[520px] rounded-full bg-violet-600/25 blur-[140px] pulse-glow" />
-        <div className="absolute bottom-[-220px] left-[30%] h-[420px] w-[420px] rounded-full bg-blue-500/20 blur-[130px]" />
+        <div className="absolute left-[-180px] top-[-180px] h-[430px] w-[430px] rounded-full bg-sky-500/30 blur-[130px] pulse-glow" />
+        <div className="absolute right-[-200px] top-[160px] h-[540px] w-[540px] rounded-full bg-violet-600/30 blur-[150px] pulse-glow" />
+        <div className="absolute bottom-[-220px] left-[25%] h-[430px] w-[430px] rounded-full bg-blue-500/20 blur-[140px]" />
 
         <nav className="relative z-20 mx-auto flex max-w-7xl items-center justify-between rounded-3xl glass px-6 py-4">
-          <div className="flex items-center gap-3">
-            <div className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-sky-400 to-violet-500 font-black text-slate-950">
+          <a href="#home" className="flex items-center gap-3">
+            <div className="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-sky-400 to-violet-500 font-black text-slate-950 shadow-xl shadow-sky-500/25">
               A
             </div>
             <div className="text-2xl font-black tracking-tight">
               ARDE<span className="gradient-text">TECH</span>
             </div>
-          </div>
+          </a>
 
           <div className="hidden gap-8 text-sm font-semibold text-slate-300 md:flex">
-            <a href="#home" className="hover:text-sky-400">Home</a>
-            <a href="#servizi" className="hover:text-sky-400">Servizi</a>
-            <a href="#portfolio" className="hover:text-sky-400">Portfolio</a>
-            <a href="#processo" className="hover:text-sky-400">Metodo</a>
-            <a href="#contatti" className="hover:text-sky-400">Contatti</a>
+            <a href="#servizi" className="transition hover:text-sky-400">
+              Servizi
+            </a>
+            <a href="#portfolio" className="transition hover:text-sky-400">
+              Portfolio
+            </a>
+            <a href="#metodo" className="transition hover:text-sky-400">
+              Metodo
+            </a>
+            <a href="#contatti" className="transition hover:text-sky-400">
+              Contatti
+            </a>
           </div>
 
           <a
-            href="#contatti"
-            className="rounded-full bg-gradient-to-r from-sky-400 to-violet-500 px-6 py-3 text-sm font-black text-white shadow-xl shadow-sky-500/20"
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full bg-gradient-to-r from-sky-400 to-violet-500 px-6 py-3 text-sm font-black text-white shadow-xl shadow-sky-500/20 transition hover:scale-105"
           >
             Richiedi preventivo
           </a>
@@ -91,49 +112,49 @@ export default function Home() {
         <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-16 pb-20 pt-24 lg:grid-cols-[1.05fr_.95fr]">
           <div className="reveal">
             <div className="mb-6 inline-flex rounded-full border border-sky-400/30 bg-sky-400/10 px-4 py-2 text-sm font-bold text-sky-300">
-              🚀 Software, siti web e soluzioni digitali su misura
+              🚀 Siti web, software, gestionali e assistenza informatica
             </div>
 
             <h1 className="max-w-4xl text-5xl font-black leading-[1.02] md:text-7xl">
-              Creo strumenti digitali che fanno sembrare il tuo business{" "}
-              <span className="gradient-text">più grande, veloce e moderno.</span>
+              Creo soluzioni digitali che rendono il tuo lavoro{" "}
+              <span className="gradient-text">più semplice, moderno e veloce.</span>
             </h1>
 
             <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300">
-              Ardetech realizza siti web, gestionali personalizzati, software,
-              automazioni API, consulenza informatica e assistenza PC per privati,
-              professionisti e aziende.
+              Ardetech sviluppa siti web personalizzati, software su misura,
+              gestionali aziendali, integrazioni API, consulenza informatica,
+              assistenza tecnica e riparazione hardware.
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4">
               <a
                 href="#servizi"
-                className="rounded-full bg-gradient-to-r from-sky-400 to-violet-500 px-8 py-4 font-black text-white shadow-2xl shadow-sky-500/25"
+                className="rounded-full bg-gradient-to-r from-sky-400 to-violet-500 px-8 py-4 font-black text-white shadow-2xl shadow-sky-500/25 transition hover:scale-105"
               >
-                Scopri cosa posso fare →
+                Scopri i servizi →
               </a>
 
               <a
-                href="#portfolio"
-                className="rounded-full border border-white/15 bg-white/5 px-8 py-4 font-black text-white backdrop-blur hover:border-sky-400"
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-white/15 bg-white/5 px-8 py-4 font-black text-white backdrop-blur transition hover:scale-105 hover:border-sky-400"
               >
-                Guarda i lavori
+                Scrivimi su WhatsApp
               </a>
             </div>
 
             <div className="mt-12 grid max-w-xl grid-cols-3 gap-4">
-              <div className="glass rounded-2xl p-4">
-                <div className="gradient-text text-3xl font-black">100%</div>
-                <p className="text-xs text-slate-400">su misura</p>
-              </div>
-              <div className="glass rounded-2xl p-4">
-                <div className="gradient-text text-3xl font-black">24/7</div>
-                <p className="text-xs text-slate-400">online</p>
-              </div>
-              <div className="glass rounded-2xl p-4">
-                <div className="gradient-text text-3xl font-black">1:1</div>
-                <p className="text-xs text-slate-400">supporto diretto</p>
-              </div>
+              {[
+                ["100%", "su misura"],
+                ["Online", "subito operativo"],
+                ["1:1", "supporto diretto"],
+              ].map(([value, label]) => (
+                <div key={value} className="glass rounded-2xl p-4 card-hover">
+                  <div className="gradient-text text-3xl font-black">{value}</div>
+                  <p className="text-xs text-slate-400">{label}</p>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -148,9 +169,11 @@ export default function Home() {
               />
 
               <div className="absolute bottom-8 left-8 right-8 rounded-3xl border border-white/10 bg-black/50 p-5 backdrop-blur-xl">
-                <p className="text-sm font-bold text-sky-300">ARDETECH SYSTEM</p>
+                <p className="text-sm font-bold text-sky-300">
+                  ARDETECH DIGITAL SYSTEM
+                </p>
                 <p className="mt-2 text-2xl font-black">
-                  Web • Software • API • Assistenza
+                  Web • Software • API • Hardware
                 </p>
               </div>
             </div>
@@ -159,7 +182,10 @@ export default function Home() {
 
         <div className="relative z-10 mx-auto grid max-w-7xl gap-4 rounded-3xl glass p-5 md:grid-cols-3 lg:grid-cols-6">
           {services.map((service) => (
-            <div key={service.title} className="rounded-2xl border border-white/10 p-5 card-hover">
+            <div
+              key={service.title}
+              className="rounded-2xl border border-white/10 p-5 card-hover"
+            >
               <div className="mb-4 text-3xl">{service.icon}</div>
               <h3 className="text-sm font-black">{service.title}</h3>
             </div>
@@ -167,24 +193,29 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="servizi" className="px-6 py-28">
+      <section id="servizi" className="relative px-6 py-28">
+        <div className="absolute left-0 top-20 h-[300px] w-[300px] rounded-full bg-sky-500/10 blur-[100px]" />
+
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto mb-16 max-w-3xl text-center">
             <p className="mb-4 text-sm font-black uppercase tracking-[0.35em] text-sky-400">
-              I servizi
+              Servizi
             </p>
             <h2 className="text-4xl font-black md:text-6xl">
-              Soluzioni concrete, non fumo.
+              Tecnologia utile, bella e concreta.
             </h2>
             <p className="mt-6 text-lg leading-8 text-slate-400">
-              Dal sito web al gestionale completo: creo strumenti che servono davvero,
-              belli da vedere e semplici da usare.
+              Non creo solo “siti” o “programmi”: costruisco strumenti digitali
+              pensati per farti lavorare meglio e presentarti in modo professionale.
             </p>
           </div>
 
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
-              <div key={service.title} className="glass card-hover rounded-[2rem] p-8">
+              <div
+                key={service.title}
+                className="glass card-hover rounded-[2rem] p-8"
+              >
                 <div className="mb-8 grid h-14 w-14 place-items-center rounded-2xl bg-sky-400/10 text-3xl ring-1 ring-sky-400/30">
                   {service.icon}
                 </div>
@@ -208,16 +239,24 @@ export default function Home() {
               </h2>
             </div>
 
-            <a href="#contatti" className="rounded-full border border-white/15 px-6 py-3 font-black hover:border-sky-400">
+            <a
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-white/15 px-6 py-3 font-black transition hover:border-sky-400"
+            >
               Parliamo del tuo progetto →
             </a>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {projects.map((project) => (
-              <div key={project.title} className="group overflow-hidden rounded-3xl border border-white/10 bg-white/5 card-hover">
+              <div
+                key={project.title}
+                className="group overflow-hidden rounded-3xl border border-white/10 bg-white/5 card-hover"
+              >
                 <img
-                  src={project.img}
+                  src={project.image}
                   alt={project.title}
                   className="h-52 w-full object-cover opacity-80 transition duration-500 group-hover:scale-110 group-hover:opacity-100"
                 />
@@ -233,7 +272,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="processo" className="px-6 pb-28">
+      <section id="metodo" className="px-6 pb-28">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 text-center">
             <p className="mb-4 text-sm font-black uppercase tracking-[0.35em] text-sky-400">
@@ -245,14 +284,15 @@ export default function Home() {
           </div>
 
           <div className="grid gap-5 md:grid-cols-4">
-            {["Analisi", "Design", "Sviluppo", "Pubblicazione"].map((step, i) => (
+            {steps.map((step, i) => (
               <div key={step} className="glass card-hover rounded-[2rem] p-8">
                 <div className="gradient-text mb-8 text-5xl font-black">
                   0{i + 1}
                 </div>
                 <h3 className="text-2xl font-black">{step}</h3>
                 <p className="mt-4 leading-7 text-slate-400">
-                  Procediamo passo per passo, con obiettivi chiari e risultato finale pronto all’uso.
+                  Procediamo passo per passo, con obiettivi chiari e risultato
+                  finale pronto all’uso.
                 </p>
               </div>
             ))}
@@ -271,14 +311,17 @@ export default function Home() {
                 Hai un progetto in mente?
               </h2>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
-                Raccontami cosa vuoi creare: sito, gestionale, software, automazione
-                o assistenza informatica. Ti aiuto a trasformarlo in qualcosa di reale.
+                Raccontami cosa vuoi creare: sito web, gestionale, software,
+                automazione, assistenza o riparazione PC. Ti aiuto a trasformarlo
+                in qualcosa di reale.
               </p>
             </div>
 
             <a
-              href="https://wa.me/3779635675"
-              className="rounded-full bg-gradient-to-r from-sky-400 to-violet-500 px-9 py-5 text-center text-lg font-black text-white shadow-2xl shadow-sky-500/20"
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full bg-gradient-to-r from-sky-400 to-violet-500 px-9 py-5 text-center text-lg font-black text-white shadow-2xl shadow-sky-500/20 transition hover:scale-105"
             >
               Richiedi preventivo →
             </a>
@@ -286,7 +329,10 @@ export default function Home() {
         </div>
 
         <footer className="mx-auto mt-10 flex max-w-7xl flex-col justify-between gap-4 border-t border-white/10 py-8 text-sm text-slate-500 md:flex-row">
-          <p>© 2026 Ardetech — Consulenza informatica, siti web e software su misura.</p>
+          <p>
+            © 2026 Ardetech — Consulenza informatica, siti web, software e
+            assistenza tecnica.
+          </p>
           <p>Made with code, design and caffeine.</p>
         </footer>
       </section>
