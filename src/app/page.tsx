@@ -1,7 +1,15 @@
+"use client";
+
+import { FormEvent, useState } from "react";
+
 const phoneNumber = "393779635675";
+const emailAddress = "info@ardetech.it";
+
+const whatsappMessage =
+  "Ciao Ardetech, vorrei richiedere un preventivo. Mi interessa un servizio informatico e vorrei ricevere maggiori informazioni su costi, tempi e possibilità di realizzazione.";
 
 const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-  "Ciao Ardetech, vorrei richiedere un preventivo per un servizio informatico."
+  whatsappMessage
 )}`;
 
 const services = [
@@ -67,6 +75,53 @@ const projects = [
 const steps = ["Analisi", "Design", "Sviluppo", "Pubblicazione"];
 
 export default function Home() {
+  const [formData, setFormData] = useState({
+    nome: "",
+    telefono: "",
+    email: "",
+    servizio: "Sito Web Personalizzato",
+    budget: "Da valutare",
+    descrizione: "",
+  });
+
+  function updateField(
+    field: keyof typeof formData,
+    value: string
+  ) {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  }
+
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    const subject = `Nuova richiesta preventivo Ardetech - ${formData.servizio}`;
+
+    const body = `
+Ciao Ardetech,
+
+vorrei richiedere un preventivo.
+
+Nome: ${formData.nome}
+Telefono: ${formData.telefono}
+Email: ${formData.email}
+
+Servizio richiesto: ${formData.servizio}
+Budget indicativo: ${formData.budget}
+
+Descrizione richiesta:
+${formData.descrizione}
+
+Grazie.
+`;
+
+    window.location.href = `mailto:${emailAddress}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+  }
+
   return (
     <main className="min-h-screen overflow-hidden text-white">
       <section id="home" className="relative min-h-screen grid-bg px-6 py-7">
@@ -94,8 +149,11 @@ export default function Home() {
             <a href="#metodo" className="transition hover:text-sky-400">
               Metodo
             </a>
-            <a href="#contatti" className="transition hover:text-sky-400">
-              Contatti
+            <a href="#preventivo" className="transition hover:text-sky-400">
+              Preventivo
+            </a>
+            <a href="/admin" className="transition hover:text-violet-400">
+              Accedi
             </a>
           </div>
 
@@ -105,7 +163,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="rounded-full bg-gradient-to-r from-sky-400 to-violet-500 px-6 py-3 text-sm font-black text-white shadow-xl shadow-sky-500/20 transition hover:scale-105"
           >
-            Richiedi preventivo
+            WhatsApp
           </a>
         </nav>
 
@@ -117,7 +175,9 @@ export default function Home() {
 
             <h1 className="max-w-4xl text-5xl font-black leading-[1.02] md:text-7xl">
               Creo soluzioni digitali che rendono il tuo lavoro{" "}
-              <span className="gradient-text">più semplice, moderno e veloce.</span>
+              <span className="gradient-text">
+                più semplice, moderno e veloce.
+              </span>
             </h1>
 
             <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300">
@@ -128,10 +188,10 @@ export default function Home() {
 
             <div className="mt-10 flex flex-wrap gap-4">
               <a
-                href="#servizi"
+                href="#preventivo"
                 className="rounded-full bg-gradient-to-r from-sky-400 to-violet-500 px-8 py-4 font-black text-white shadow-2xl shadow-sky-500/25 transition hover:scale-105"
               >
-                Scopri i servizi →
+                Richiedi preventivo →
               </a>
 
               <a
@@ -151,7 +211,9 @@ export default function Home() {
                 ["1:1", "supporto diretto"],
               ].map(([value, label]) => (
                 <div key={value} className="glass rounded-2xl p-4 card-hover">
-                  <div className="gradient-text text-3xl font-black">{value}</div>
+                  <div className="gradient-text text-3xl font-black">
+                    {value}
+                  </div>
                   <p className="text-xs text-slate-400">{label}</p>
                 </div>
               ))}
@@ -206,7 +268,8 @@ export default function Home() {
             </h2>
             <p className="mt-6 text-lg leading-8 text-slate-400">
               Non creo solo “siti” o “programmi”: costruisco strumenti digitali
-              pensati per farti lavorare meglio e presentarti in modo professionale.
+              pensati per farti lavorare meglio e presentarti in modo
+              professionale.
             </p>
           </div>
 
@@ -240,9 +303,7 @@ export default function Home() {
             </div>
 
             <a
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#preventivo"
               className="rounded-full border border-white/15 px-6 py-3 font-black transition hover:border-sky-400"
             >
               Parliamo del tuo progetto →
@@ -300,6 +361,186 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="preventivo" className="relative px-6 pb-28">
+        <div className="absolute right-0 top-20 h-[360px] w-[360px] rounded-full bg-violet-500/10 blur-[120px]" />
+
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="glass rounded-[2.5rem] p-8 md:p-10">
+            <p className="mb-4 text-sm font-black uppercase tracking-[0.35em] text-sky-400">
+              Preventivo
+            </p>
+
+            <h2 className="text-4xl font-black md:text-5xl">
+              Scegli come vuoi richiedere il preventivo.
+            </h2>
+
+            <p className="mt-6 text-lg leading-8 text-slate-400">
+              Puoi scrivermi direttamente su WhatsApp oppure compilare il
+              modulo dal sito con tutti i dettagli del progetto.
+            </p>
+
+            <div className="mt-8 grid gap-4">
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-3xl border border-emerald-400/30 bg-emerald-400/10 p-6 transition hover:scale-[1.02] hover:border-emerald-400"
+              >
+                <div className="text-3xl">💬</div>
+                <h3 className="mt-4 text-2xl font-black">
+                  Preventivo via WhatsApp
+                </h3>
+                <p className="mt-2 text-slate-400">
+                  Si apre WhatsApp con un messaggio già pronto da inviarmi.
+                </p>
+              </a>
+
+              <div className="rounded-3xl border border-sky-400/30 bg-sky-400/10 p-6">
+                <div className="text-3xl">📩</div>
+                <h3 className="mt-4 text-2xl font-black">
+                  Preventivo dal sito
+                </h3>
+                <p className="mt-2 text-slate-400">
+                  Compili il modulo con servizio, budget e descrizione. Per ora
+                  arriva via email, poi lo colleghiamo al backend.
+                </p>
+              </div>
+
+              <a
+                href="/admin"
+                className="rounded-3xl border border-violet-400/30 bg-violet-400/10 p-6 transition hover:scale-[1.02] hover:border-violet-400"
+              >
+                <div className="text-3xl">🔐</div>
+                <h3 className="mt-4 text-2xl font-black">
+                  Accesso riservato
+                </h3>
+                <p className="mt-2 text-slate-400">
+                  Area privata per vedere richieste, lavori e gestione sito.
+                  La costruiamo nel prossimo step.
+                </p>
+              </a>
+            </div>
+          </div>
+
+          <form
+            onSubmit={handleSubmit}
+            className="glass rounded-[2.5rem] p-8 md:p-10"
+          >
+            <div className="grid gap-5 md:grid-cols-2">
+              <div>
+                <label className="mb-2 block text-sm font-bold text-slate-300">
+                  Nome e cognome
+                </label>
+                <input
+                  required
+                  value={formData.nome}
+                  onChange={(e) => updateField("nome", e.target.value)}
+                  className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white outline-none transition placeholder:text-slate-500 focus:border-sky-400"
+                  placeholder="Mario Rossi"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-bold text-slate-300">
+                  Telefono
+                </label>
+                <input
+                  required
+                  value={formData.telefono}
+                  onChange={(e) => updateField("telefono", e.target.value)}
+                  className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white outline-none transition placeholder:text-slate-500 focus:border-sky-400"
+                  placeholder="+39 ..."
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-bold text-slate-300">
+                  Email
+                </label>
+                <input
+                  required
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => updateField("email", e.target.value)}
+                  className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white outline-none transition placeholder:text-slate-500 focus:border-sky-400"
+                  placeholder="email@esempio.it"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-bold text-slate-300">
+                  Budget indicativo
+                </label>
+                <select
+                  value={formData.budget}
+                  onChange={(e) => updateField("budget", e.target.value)}
+                  className="w-full rounded-2xl border border-white/10 bg-slate-950 px-5 py-4 text-white outline-none transition focus:border-sky-400"
+                >
+                  <option>Da valutare</option>
+                  <option>Fino a 300€</option>
+                  <option>300€ - 800€</option>
+                  <option>800€ - 1.500€</option>
+                  <option>1.500€ - 3.000€</option>
+                  <option>Oltre 3.000€</option>
+                </select>
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="mb-2 block text-sm font-bold text-slate-300">
+                  Tipo di servizio
+                </label>
+                <select
+                  value={formData.servizio}
+                  onChange={(e) => updateField("servizio", e.target.value)}
+                  className="w-full rounded-2xl border border-white/10 bg-slate-950 px-5 py-4 text-white outline-none transition focus:border-sky-400"
+                >
+                  <option>Sito Web Personalizzato</option>
+                  <option>Gestionale su Misura</option>
+                  <option>Software Personalizzato</option>
+                  <option>Integrazione API</option>
+                  <option>Consulenza Informatica</option>
+                  <option>Assistenza Tecnica</option>
+                  <option>Riparazione Hardware</option>
+                  <option>Altro</option>
+                </select>
+              </div>
+
+              <div className="md:col-span-2">
+                <label className="mb-2 block text-sm font-bold text-slate-300">
+                  Descrizione richiesta
+                </label>
+                <textarea
+                  required
+                  rows={6}
+                  value={formData.descrizione}
+                  onChange={(e) => updateField("descrizione", e.target.value)}
+                  className="w-full resize-none rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-white outline-none transition placeholder:text-slate-500 focus:border-sky-400"
+                  placeholder="Scrivi cosa ti serve, che problema vuoi risolvere, se hai già un sito/software, tempi desiderati, ecc..."
+                />
+              </div>
+            </div>
+
+            <div className="mt-7 flex flex-col gap-4 md:flex-row">
+              <button
+                type="submit"
+                className="rounded-full bg-gradient-to-r from-sky-400 to-violet-500 px-8 py-4 font-black text-white shadow-2xl shadow-sky-500/20 transition hover:scale-105"
+              >
+                Invia richiesta dal sito →
+              </button>
+
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-white/15 bg-white/5 px-8 py-4 text-center font-black transition hover:scale-105 hover:border-emerald-400"
+              >
+                Oppure WhatsApp
+              </a>
+            </div>
+          </form>
+        </div>
+      </section>
+
       <section id="contatti" className="px-6 pb-12">
         <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border border-sky-400/20 bg-gradient-to-r from-sky-500/15 via-blue-500/10 to-violet-500/15 p-10 md:p-14">
           <div className="flex flex-col justify-between gap-10 md:flex-row md:items-center">
@@ -312,15 +553,13 @@ export default function Home() {
               </h2>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
                 Raccontami cosa vuoi creare: sito web, gestionale, software,
-                automazione, assistenza o riparazione PC. Ti aiuto a trasformarlo
-                in qualcosa di reale.
+                automazione, assistenza o riparazione PC. Ti aiuto a
+                trasformarlo in qualcosa di reale.
               </p>
             </div>
 
             <a
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#preventivo"
               className="rounded-full bg-gradient-to-r from-sky-400 to-violet-500 px-9 py-5 text-center text-lg font-black text-white shadow-2xl shadow-sky-500/20 transition hover:scale-105"
             >
               Richiedi preventivo →
@@ -333,7 +572,7 @@ export default function Home() {
             © 2026 Ardetech — Consulenza informatica, siti web, software e
             assistenza tecnica.
           </p>
-          <p>Made with code, design and caffeine.</p>
+          <p>Area admin pronta per il prossimo step.</p>
         </footer>
       </section>
     </main>
